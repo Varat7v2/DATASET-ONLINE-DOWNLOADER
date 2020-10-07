@@ -1,4 +1,4 @@
-This project contributes mainly in downloading images from online search engine: Google, Baidu, and Bing.
+This project contributes mainly in downloading images from online search engine i.e. Google, Baidu, and Bing.
 
 It plays major role while preparing datasets for machine learning models. I have mainly focused on preparing data for classification models i.e. based on keyword provided to search engine and small update on configuration file will allow users to automatically annotate all those downloaed images.
 
