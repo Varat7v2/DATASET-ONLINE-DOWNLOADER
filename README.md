@@ -10,7 +10,5 @@ Step 1: Prepare appropriated keywords in a separate text file according to class
 
 Step 2: Convert keywords text file to csv file
 Step 3: Start downloading images online with number of images to download per keyword as argument
-```
-python myonline-images-download.py
-```
+`python myonline-images-download.py`
 Step 4: Split entire datasets to three groups: training, validation, and testing dataset 
