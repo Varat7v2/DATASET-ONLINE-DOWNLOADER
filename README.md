@@ -8,4 +8,9 @@ Following steps need to be followd to download images abiding within peripehery 
 
 Step 1: Prepare appropriated keywords in a separate text file according to classname. For instance, for classes dog and cat, two keywords files like dog.txt and cat.txt need to be prepared.
 
-Step 2: 
+Step 2: Convert keywords text file to csv file
+Step 3: Start downloading images online with number of images to download per keyword as argument
+```
+python myonline-images-download.py
+```
+Step 4: Split entire datasets to three groups: training, validation, and testing dataset 
