@@ -2,13 +2,13 @@ import csv
 from tqdm import tqdm
 import os, sys
 
-filename = 'nationality_list.csv'
+filename = 'keywords/nationality_list.csv'
 
 fields = list()
 rows = list()
 
-file1 = open('male-keywords.txt', 'r')
-file2 = open('female-keywords.txt', 'r')
+file1 = open('keywords/male-keywords.txt', 'r')
+file2 = open('keywords/female-keywords.txt', 'r')
 temp_class1 = [keyword.strip('\n') for keyword in file1.readlines()]
 temp_class2 = [keyword.strip('\n') for keyword in file2.readlines()]
 file1.close()
@@ -29,7 +29,7 @@ with open(filename, 'r') as csvfile:
 for class_num, temp_class in tqdm(enumerate([temp_class1, temp_class2])):
 	myfields = list()
 	myfinalRows = list()
-	keyword_file = 'keywords_class{}.csv'.format(class_num+1)
+	keyword_file = 'keywords/keywords_class{}.csv'.format(class_num+1)
 
 	for row in rows:
 		myrows = list()
