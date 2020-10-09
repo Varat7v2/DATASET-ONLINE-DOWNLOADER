@@ -2,42 +2,54 @@ import csv
 from tqdm import tqdm
 import os, sys
 
-filename = 'keywords/nationality_list.csv'
+import dataset_downloader_config as myconfig
 
-fields = list()
-rows = list()
+file1_major = '{}'.format(myconfig.MAJOR_KEYWORD_CLASS1)
+file2_major = '{}'.format(myconfig.MAJOR_KEYWORD_CLASS2)
 
-file1 = open('keywords/male-keywords.txt', 'r')
-file2 = open('keywords/female-keywords.txt', 'r')
-temp_class1 = [keyword.strip('\n') for keyword in file1.readlines()]
-temp_class2 = [keyword.strip('\n') for keyword in file2.readlines()]
-file1.close()
-file2.close()
+file1_minor = open('{}'.format(myconfig.MINOR_KEYWORD_CLASS1), 'r')
+file2_minor = open('{}'.format(myconfig.MINOR_KEYWORD_CLASS2), 'r')
+temp_class1 = [keyword.strip('\n') for keyword in file1_minor.readlines()]
+temp_class2 = [keyword.strip('\n') for keyword in file2_minor.readlines()]
+file1_minor.close()
+file2_minor.close()
 
-with open(filename, 'r') as csvfile:
-	csvreader = csv.reader(csvfile)
-	fields = next(csvreader)
-	for row in csvreader:
-		rows.append(row)
+if not os.path.exists('data'):
+    os.makedirs('data')
 
-	print('Total no. of rows: %d' %(csvreader.line_num))
+for fmajor, temp_classes, class_name  in zip([file1_major, file2_major], 
+											 [temp_class1, temp_class2], 
+											 [myconfig.CLASS1_NAME, myconfig.CLASS2_NAME]):
 
-# # printing field names
-# print('Field names are: ' + ','.join(field for field in fields))
-# print(rows[:5])
-
-for class_num, temp_class in tqdm(enumerate([temp_class1, temp_class2])):
+	fields = list()
+	major_filenames = list()
 	myfields = list()
 	myfinalRows = list()
-	keyword_file = 'keywords/keywords_class{}.csv'.format(class_num+1)
 
-	for row in rows:
-		myrows = list()
-		for subclass in temp_class:
-			myrows.append('{}-{}'.format(row[0], subclass))
-		myfinalRows.append(myrows)
+	with open(fmajor, 'r') as csvfile:
+		csvreader = csv.reader(csvfile)
+		fields = next(csvreader)
+		for rows in csvreader:
+			if len(rows) != 0:
+				major_name = '-'.join([row for row in rows[0].split(' ')]).lower()
+				if class_name in major_name.split('-'):
+					major_name = major_name.split('-')
+					major_name = major_name[:major_name.index(class_name)]
+					major_name = '-'.join([row for row in major_name])
+				major_filenames.append(major_name)
+		print('Total no. of major_filenames: %d' %(csvreader.line_num))
+		# print(major_filenames)
 
-	with open(keyword_file, 'w') as csvfile: 
+	for temp_class in temp_classes:
+		# print(temp_class)
+		keyword_file = 'keywords/{}/keywords_class_{}.csv'.format(myconfig.PROJECT_NAME, class_name)
+		for row in major_filenames:
+			myfinalRows.append(['{}-{}'.format(row, temp_class)])
+	# print(myfinalRows)
+
+	with open(keyword_file, 'w') as csvfile:
 	    csvwriter = csv.writer(csvfile) 
-	    # csvwriter.writerow(myfields)
+	    # csvwriter.writerow(myfields) 	# To name the columns
 	    csvwriter.writerows(myfinalRows)
+
+print('Successfully created keywords csv files for each classes!')

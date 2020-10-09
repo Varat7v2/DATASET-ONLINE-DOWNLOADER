@@ -4,17 +4,20 @@ import os, sys
 from sklearn.utils import shuffle
 
 from tqdm import tqdm
+import dataset_downloader_config as myconfig
 
-df = pd.read_csv('data/gender_detection.csv')
+df = pd.read_csv('data/{}.csv'.format(myconfig.PROJECT_NAME))
 
 # for two classes create two empty list
 class1, class2 = list(), list()
 for index, row in df.iterrows():
     myclass = row['filename'].split('/')[-3]
+    # print(myclass)
+    # sys.exit(0)
 
-    if myclass == 'male':
+    if myclass == myconfig.CLASS1_NAME:
     	class1.append(row)
-    elif myclass == 'female':
+    elif myclass == myconfig.CLASS2_NAME:
     	class2.append(row)
 
 # # convert to dataframe and shuffle the elements
@@ -69,11 +72,11 @@ for folder in folders:
 			count = 0
 			for image_path in tqdm(value):
 				classes = image_path.split('/')[-3]
-				if classes == 'male':
+				if classes == myconfig.CLASS1_NAME:
 					if not os.path.exists(os.path.join(dest_dir, folder, classes)):
 					    os.makedirs(os.path.join(dest_dir, folder, classes))
 					shutil.copy2(image_path, os.path.join(dest_dir, folder,classes)+'/'+str(count)+'_{}.jpg'.format(folder))
-				if classes == 'female':
+				if classes == myconfig.CLASS2_NAME:
 					if not os.path.exists(os.path.join(dest_dir, folder, classes)):
 					    os.makedirs(os.path.join(dest_dir, folder, classes))
 					shutil.copy2(image_path, os.path.join(dest_dir, folder,classes)+'/'+str(count)+'_{}.jpg'.format(folder))
