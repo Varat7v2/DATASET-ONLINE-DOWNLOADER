@@ -14,6 +14,10 @@ temp_class2 = [keyword.strip('\n') for keyword in file2_minor.readlines()]
 file1_minor.close()
 file2_minor.close()
 
+# CREATING NECESSARY FOLDERS
+if not os.path.exists('data/{}'.format(myconfig.DATASET_VERSION)):
+    os.makedirs('data/{}'.format(myconfig.DATASET_VERSION))
+
 if not os.path.exists('data'):
     os.makedirs('data')
 
