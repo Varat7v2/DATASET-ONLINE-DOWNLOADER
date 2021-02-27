@@ -22,3 +22,4 @@ python csv2class-allocator.py
 ```
 python online-images-download.py --max_number 10
 ```
+NOTE: To make this work, you need to download the proper chrome driver based on your Google-Chrome browser version. To check your Google chrome browser version you need to first go to "Settings" and then to "About Chrome". Once you know the version, you can google for driver for that particular version. Finally, the downloaded driver need to replace exiting driver in the "bin" folder.
