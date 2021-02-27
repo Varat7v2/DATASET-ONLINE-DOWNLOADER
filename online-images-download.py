@@ -4,17 +4,13 @@ import pandas as pd
 from sklearn.utils import shuffle
 import argparse
 import csv
+import cv2
 
 import dataset_downloader_config as myconfig
 
 from tqdm import tqdm
 
-def main(argv):
-	# parser = argparse.ArgumentParser(description="myOnline Image Downloader")
-	# parser.add_argument("--max-number", "-n", type=int, default=100,
-	#                     help="Max number of images download for the keywords.")
-	# args = parser.parse_args(args=argv)
-
+def main():
 	### Downloading images from Google / Baidu / Bing
 	# Under class-name-list try putting DISPARATE AND VARYING TOPIC/TITLE OF CLASS-IMAGES for googling/Binging/Baiduing
 	keywords_class1 = myconfig.KEYWORDS_CLASS1
@@ -44,7 +40,7 @@ def main(argv):
 		for keyword in value:
 			for search in myconfig.SEARCH_ENGINES:
 				os.system('python image_downloader.py {} --engine {} --max-number {} --output "data/{}/{}/{}"'
-					.format(keyword, search, max_number, data_version, key, keyword))
+					.format(keyword, search, myconfig.MAX_NUMBER, data_version, key, keyword))
 
 	print("Creating CSV file of imagepaths ... ")
 	root, dirs, files = next(os.walk('data/{}'.format(myconfig.DATASET_VERSION)))
@@ -65,4 +61,4 @@ def main(argv):
 	df.to_csv('data/{}.csv'.format(myconfig.PROJECT_NAME), index=False)
 
 if __name__ == '__main__':
-	main(sys.argv[1:])
+	main()

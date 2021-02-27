@@ -1,0 +1,12 @@
+
+baby-boy
+Toddler-boy
+young-boy
+teenage-boy
+young-man
+adult-man
+middle-aged-man
+old-man
+male-model
+male-celebrity
+
