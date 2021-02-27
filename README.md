@@ -20,5 +20,5 @@ python csv2class-allocator.py
 
 ###### **Step 3:** Start downloading images online with number of images per keyword as an argument
 ```
-python myonline-images-download.py --max_number 10
+python online-images-download.py --max_number 10
 ```
