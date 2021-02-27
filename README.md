@@ -6,7 +6,7 @@ While, I am currently working on automtic annotated dataset preparation for obje
 
 Following steps need to be followd to download images abiding within peripehery of this project.
 
-###### Step 1: Prepare appropriated keywords in a separate text file according to classname. For instance, for classes dog and cat, two keywords files like dog.txt and cat.txt need to be prepared.
+###### Step 1: Prepare appropriated keywords in a separate text file according to classname. For instance, for classes dog and cat, two keywords files like dog.txt and cat.txt need to be prepared. For example you can refer to this [folder](https://github.com/Varat7v2/online-dataset-maker/tree/master/keywords/pet_detection). Only major and minor text files need to be manually prepared while the resulting csv file will be created by running the script as shown in Step 2
 
 ###### Step 2: Create sub-keywords from major keywords along with prefixes and postfixes if available
 ```
