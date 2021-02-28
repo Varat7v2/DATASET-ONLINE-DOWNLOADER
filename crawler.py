@@ -12,6 +12,7 @@ import os
 import json
 import codecs
 import shutil
+import dataset_downloader_config as myconfig
 
 from urllib.parse import unquote, quote
 from selenium import webdriver
@@ -235,7 +236,7 @@ def baidu_get_image_url_using_api(keywords, max_number=10000, face_only=False,
 
 def crawl_image_urls(keywords, engine="Google", max_number=10000,
                      face_only=False, safe_mode=False, proxy=None, 
-                     proxy_type="http", quiet=False, browser="phantomjs"):
+                     proxy_type="http", quiet=False, browser=myconfig.BROWSER_DRIVER):
     """
     Scrape image urls of keywords from Google Image Search
     :param keywords: keywords you want to search

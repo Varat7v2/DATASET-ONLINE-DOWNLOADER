@@ -21,5 +21,6 @@ KEYWORDS_CLASS2 = 'keywords/{}/keywords_class_{}.csv'.format(PROJECT_NAME, CLASS
 DATASET_VERSION = 'data_gender'
 
 # Maximum no. of images to download
-MAX_NUMBER = 2
+MAX_NUMBER = 50
 SEARCH_ENGINES = {"Google", "Bing"}
+BROWSER_DRIVER = "chromedriver"
