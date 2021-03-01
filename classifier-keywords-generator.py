@@ -60,6 +60,8 @@ for fmajor, temp_classes, class_name  in zip([file1_major, file2_major],
 		for row in major_filenames:
 			myfinalRows.append([row])
 
+	print(myfinalRows)
+
 	with open(keyword_file, 'w') as csvfile:
 	    csvwriter = csv.writer(csvfile) 
 	    # csvwriter.writerow(myfields) 	# To name the columns
