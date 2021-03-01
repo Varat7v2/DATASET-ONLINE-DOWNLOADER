@@ -1,5 +1,4 @@
 
-baby-girl
 Toddler-girl
 young-girl
 teenage-girl
@@ -9,4 +8,10 @@ middle-aged-woman
 old-woman
 female-model
 female-celebrity
-
+indian-girl
+indian-woman
+woman-in-sarees
+woman-in-salwar-kameez
+woman-in-sharara-and-anarkali
+woman-with-burka
+woman-with-hijab

@@ -1,5 +1,4 @@
 
-baby-boy
 Toddler-boy
 young-boy
 teenage-boy
@@ -9,4 +8,11 @@ middle-aged-man
 old-man
 male-model
 male-celebrity
-
+indian-man
+indian-boy
+man-in-shalwar-kameez
+man-in-dhoti
+man-in-lungi
+man-in-bandhgala
+man-in-angarkha
+man-in-thawb
