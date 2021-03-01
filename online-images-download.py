@@ -29,7 +29,6 @@ def main():
 			for row in csvreader:
 				iclass.append(row[0])
 		print(iclass)
-	sys.exit(0)
 					
 	# print('Class1 keywords length: ', len(class1))
 	# print('Class2 keywords length: ', len(class2))
