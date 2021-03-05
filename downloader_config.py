@@ -45,6 +45,6 @@ for major_key, minor_key, class_key, iclass in zip(MAJOR_KEYWORD_CLASSES, MINOR_
 DATASET_VERSION = '{}_dataset'.format(myPROJECT)
 
 # Maximum no. of images to download
-MAX_NUMBER = 2000
+MAX_NUMBER = 2
 SEARCH_ENGINES = {"Google", "Bing"}
 BROWSER_DRIVER = "chromedriver_88"
