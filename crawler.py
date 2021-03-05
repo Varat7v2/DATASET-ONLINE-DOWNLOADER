@@ -273,8 +273,8 @@ def crawl_image_urls(keywords, engine="Google", max_number=10000,
 
     browser = str.lower(browser)
     if "chrome" in browser:
-        chrome_path = shutil.which("chromedriver")
-        chrome_path = "./bin/chromedriver" if chrome_path is None else chrome_path
+        chrome_path = shutil.which("{}".format(myconfig.BROWSER_DRIVER))
+        chrome_path = "./bin/{}".format(myconfig.BROWSER_DRIVER) if chrome_path is None else chrome_path
         chrome_options = webdriver.ChromeOptions()
         if "headless" in browser:
             chrome_options.add_argument("headless")

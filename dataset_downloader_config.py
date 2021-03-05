@@ -47,4 +47,4 @@ DATASET_VERSION = '{}_dataset'.format(myPROJECT)
 # Maximum no. of images to download
 MAX_NUMBER = 2000
 SEARCH_ENGINES = {"Google", "Bing"}
-BROWSER_DRIVER = "chromedriver"
+BROWSER_DRIVER = "chromedriver_88"
