@@ -1,0 +1,8 @@
+keywords
+happiness
+disgust
+anger
+fear
+surprise
+sadness
+contempt

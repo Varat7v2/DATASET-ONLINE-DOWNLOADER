@@ -13,7 +13,7 @@ Scrape images online
 python online-images-download.py
 
 
-'''
-Allocate downloaded images into training, validation, and testing sets
-'''
-python csv2class-allocator.py
+# '''
+# Allocate downloaded images into training, validation, and testing sets
+# '''
+# python csv2class-allocator.py

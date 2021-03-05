@@ -14,57 +14,64 @@ if not os.path.exists('data/{}'.format(myconfig.DATASET_VERSION)):
 # if not os.path.exists(os.path.join('keywords', myconfig.PROJECT_NAME)):
 #     os.makedirs(os.path.join('keywords', myconfig.PROJECT_NAME))
 
-file1_major = '{}'.format(myconfig.MAJOR_KEYWORD_CLASS1)
-file2_major = '{}'.format(myconfig.MAJOR_KEYWORD_CLASS2)
+if myconfig.MINOR_KEYWORD_EXISTS:
+	for Kmajor, Kminor, keyword_file in zip(myconfig.MAJOR_KEYWORD_PATH, myconfig.MINOR_KEYWORD_PATH, myconfig.CLASS_KEYWORD_PATH):
+		class_name = Kmajor.split('/')[-1].split('_')[0]
+		fields = list()
+		major_keywords = list()
+		myfields = list()
+		myfinalRows = list()
 
-file1_minor = open('{}'.format(myconfig.MINOR_KEYWORD_CLASS1), 'r')
-file2_minor = open('{}'.format(myconfig.MINOR_KEYWORD_CLASS2), 'r')
-temp_class1 = [keyword.strip('\n') for keyword in file1_minor.readlines()]
-temp_class2 = [keyword.strip('\n') for keyword in file2_minor.readlines()]
-file1_minor.close()
-file2_minor.close()
+		with open(Kmajor, 'r') as csvfile:
+			csvreader = csv.reader(csvfile)
+			fields = next(csvreader)
+			for rows in csvreader:
+				if len(rows) != 0:
+					major_name = '-'.join([row for row in rows[0].split(' ')]).lower()
+					# if myconfig.CLASSNAME_IN_KEYWORD:
+					# 	if class_name in major_name.split('-'):
+					# 		major_name = major_name.split('-')
+					# 		major_name = major_name[:major_name.index(class_name)]
+					# 		major_name = '-'.join([row for row in major_name])
+					major_keywords.append(major_name)
+		print('Total no. of keywords for "{}" class = {}'.format(class_name, str(csvreader.line_num-1)))
+		# print(major_keywords)
+		# sys.exit(0)
 
-for fmajor, temp_classes, class_name  in zip([file1_major, file2_major], 
-											 [temp_class1, temp_class2], 
-											 [myconfig.CLASS1_NAME, myconfig.CLASS2_NAME]):
+		with open(Kminor, 'r') as csvfile:
+			csvreader = csv.reader(csvfile)
+			fields = next(csvreader)
+			for rows in csvreader:
+				if (len(rows) != 0):
+					minor_key = '-'.join([row for row in rows[0].split(' ')]).lower()
+					for major_key in major_keywords:
+						myfinalRows.append(['{}-{}'.format(major_key, minor_key)])
 
-	class_name = fmajor.split('/')[-1].split('-')[0]
-	fields = list()
-	major_filenames = list()
-	myfields = list()
-	myfinalRows = list()
+		print(myfinalRows)
+		with open(keyword_file, 'w') as csvfile:
+		    csvwriter = csv.writer(csvfile) 
+		    csvwriter.writerow(['keywords']) 	# To name the columns
+		    csvwriter.writerows(myfinalRows)
+else:
+	for Kmajor, keyword_file in zip(myconfig.MAJOR_KEYWORD_PATH, myconfig.CLASS_KEYWORD_PATH):
+		class_name = Kmajor.split('/')[-1].split('_')[0]
+		fields = list()
+		major_keywords = list()
+		myfields = list()
+		myfinalRows = list()
 
-	with open(fmajor, 'r') as csvfile:
-		csvreader = csv.reader(csvfile)
-		fields = next(csvreader)
-		for rows in csvreader:
-			if len(rows) != 0:
-				major_name = '-'.join([row for row in rows[0].split(' ')]).lower()
-				if myconfig.CLASSNAME_IN_KEYWORD:
-					if class_name in major_name.split('-'):
-						major_name = major_name.split('-')
-						major_name = major_name[:major_name.index(class_name)]
-						major_name = '-'.join([row for row in major_name])
-				major_filenames.append(major_name)
-		print('Total no. of major_filenames for {} class = {}'.format(class_name, str(csvreader.line_num)))
-
-	if myconfig.MINOR_KEYWORD_EXISTS:
-		for temp_class in temp_classes:
-			# print(temp_class)
-			keyword_file = 'keywords/{}/keywords_class_{}.csv'.format(myconfig.PROJECT_NAME, class_name)
-			for row in major_filenames:
-				myfinalRows.append(['{}-{}'.format(row, temp_class)])
-		# print(myfinalRows)
-	else:
-		keyword_file = 'keywords/{}/keywords_class_{}.csv'.format(myconfig.PROJECT_NAME, class_name)
-		for row in major_filenames:
-			myfinalRows.append([row])
-
-	print(myfinalRows)
-
-	with open(keyword_file, 'w') as csvfile:
-	    csvwriter = csv.writer(csvfile) 
-	    # csvwriter.writerow(myfields) 	# To name the columns
-	    csvwriter.writerows(myfinalRows)
+		with open(Kmajor, 'r') as csvfile:
+			csvreader = csv.reader(csvfile)
+			fields = next(csvreader)
+			for rows in csvreader:
+				if len(rows) != 0:
+					major_name = '-'.join([row for row in rows[0].split(' ')]).lower()
+					myfinalRows.append([major_name])
+		print('Total no. of keywords for "{}" class = {}'.format(class_name, str(csvreader.line_num-1)))
+		print(myfinalRows)
+		with open(keyword_file, 'w') as csvfile:
+		    csvwriter = csv.writer(csvfile) 
+		    csvwriter.writerow(['keywords']) 	# To name the columns
+		    csvwriter.writerows(myfinalRows)
 
 print('Successfully created keywords csv files for each classes!')

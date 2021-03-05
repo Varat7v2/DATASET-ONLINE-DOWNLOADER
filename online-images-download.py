@@ -13,30 +13,29 @@ from tqdm import tqdm
 def main():
 	### Downloading images from Google / Baidu / Bing
 	# Under class-name-list try putting DISPARATE AND VARYING TOPIC/TITLE OF CLASS-IMAGES for googling/Binging/Baiduing
-	keywords_class1 = myconfig.KEYWORDS_CLASS1
-	keywords_class2 = myconfig.KEYWORDS_CLASS2
 
 	data_version = myconfig.DATASET_VERSION
 	max_number = myconfig.MAX_NUMBER
 
 	class1 = list()
 	class2 = list()
+	class_dict = dict()
 
-	for iclass, filename in zip([class1, class2], [keywords_class1, keywords_class2]):
+	for filename in myconfig.CLASS_KEYWORD_PATH:
+		mykeywords = list()
+		class_name = filename.split('/')[-1].split('_')[0]
 		with open(filename, 'r') as csvfile:
 			csvreader = csv.reader(csvfile)
 			fields = next(csvreader)
 			for row in csvreader:
-				iclass.append(row[0])
-		print(iclass)
-					
-	# print('Class1 keywords length: ', len(class1))
-	# print('Class2 keywords length: ', len(class2))
-
-	class_dict = {myconfig.CLASS1_NAME:class1, myconfig.CLASS2_NAME:class2}
+				mykeywords.append(row[0])
+		class_dict[class_name] = mykeywords
+	
+	# print(class_dict)
+	# sys.exit(0)
 
 	print('Downloading Images for classes')
-	for key,value in class_dict.items():
+	for key, value in class_dict.items():
 		for keyword in value:
 			for search in myconfig.SEARCH_ENGINES:
 				os.system('python image_downloader.py {} --engine {} --max-number {} --output "data/{}/{}/{}"'
