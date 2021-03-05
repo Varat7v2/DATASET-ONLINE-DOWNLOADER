@@ -2,7 +2,7 @@ import csv
 from tqdm import tqdm
 import os, sys
 
-import dataset_downloader_config as myconfig
+import downloader_config as myconfig
 
 # CREATING NECESSARY FOLDERS
 if not os.path.exists('data'):

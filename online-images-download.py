@@ -6,7 +6,7 @@ import argparse
 import csv
 import cv2
 
-import dataset_downloader_config as myconfig
+import downloader_config as myconfig
 
 from tqdm import tqdm
 

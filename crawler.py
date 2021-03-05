@@ -12,7 +12,7 @@ import os
 import json
 import codecs
 import shutil
-import dataset_downloader_config as myconfig
+import downloader_config as myconfig
 
 from urllib.parse import unquote, quote
 from selenium import webdriver
